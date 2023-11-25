@@ -32,9 +32,7 @@ class MostPopularMovie(MRJob):
     def reducer_count_ratings(self, key, values):
         yield None, (sum(values), self.movieNames[key])
 
-#This mapper does nothing; it's just here to avoid a bug in some
-#versions of mrjob related to "non-script steps." Normally this
-#wouldn't be needed.
+
     def mapper_passthrough(self, key, value):
         yield key, value
 
