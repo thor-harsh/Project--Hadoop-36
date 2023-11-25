@@ -5,9 +5,9 @@ class MostPopularMovie(MRJob):
 
     def configure_args(self):
         super(MostPopularMovie, self).configure_args()
-        ## self.add_file_option('--items', help='Path to u.item')
         self.add_file_arg('--items')
 
+    #reducer_init will be called before actual reducer of first stage will be called
     def steps(self):
         return [
             MRStep(mapper=self.mapper_get_ratings,
@@ -33,6 +33,7 @@ class MostPopularMovie(MRJob):
         yield None, (sum(values), self.movieNames[key])
 
 
+    #This will not be needed. Still added to avoid any errors
     def mapper_passthrough(self, key, value):
         yield key, value
 
